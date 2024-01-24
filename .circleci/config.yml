@@ -14,15 +14,7 @@ jobs:
       environment:
         SERVICES: s3,sqs,sns,sts,iam
         GATEWAY_LISTEN: 0.0.0.0:4576
-    parallelism: 1
+    parallelism: 101
     resource_class: medium
     steps:
-      - run:
-          name: install Localstack CLI
-          command: |
-            pip install localstack
-            localstack --version
-      - run:
-          name: install Localstack CLI
-          command: |
-            localstack wait -t 30 
+      - run: sleep 100
