@@ -1,0 +1,23 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+    - image: cimg/node:18
+      aws_auth:
+        oidc_role_arn: ${AWS_IAM_ROLE}
+    - image: cimg/postgres:13.5-postgis
+      environment:
+        POSTGRES_USER: elephant
+        POSTGRES_PASSWORD: localdev
+        POSTGRES_DB: code
+    - image: redis:6-alpine
+    - image: localstack/localstack:3
+      environment:
+        SERVICES: s3,sqs,sns,sts,iam
+        GATEWAY_LISTEN: 0.0.0.0:4576
+    parallelism: 1
+    resource_class: medium
+    steps:
+    - checkout
+    - run: sleep 150
