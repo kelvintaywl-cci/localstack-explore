@@ -4,8 +4,6 @@ jobs:
   build:
     docker:
     - image: cimg/node:18
-      aws_auth:
-        oidc_role_arn: ${AWS_IAM_ROLE}
     - image: cimg/postgres:13.5-postgis
       environment:
         POSTGRES_USER: elephant
