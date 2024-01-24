@@ -20,7 +20,7 @@ jobs:
       - run:
           name: install Localstack CLI
           command: |
-            python -m pip install --upgrade localstack
+            pip install localstack
             localstack --version
       - run:
           name: install Localstack CLI
